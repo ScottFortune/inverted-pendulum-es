@@ -11,13 +11,13 @@ def train_and_plot():
     es = EvolutionStrategy(
         policy=policy,
         env=env,
-        n_perturb=100,
+        n_perturb=200,
         sigma=0.2,
-        alpha=0.02,
+        alpha=0.002,
         episodes=5
     )
 
-    rewards = es.optimize(300)
+    rewards = es.optimize(500)
 
     plt.plot(rewards)
     plt.title("Training Reward")
