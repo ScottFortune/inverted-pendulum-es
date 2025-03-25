@@ -12,7 +12,8 @@ spec_es = [
     ('alpha', float64),
     ('episodes', int64),
     ('damping', float64),
-    ('noise', float64)
+    ('noise', float64),
+    ('torque_penalty', float64)
     
 ]
 

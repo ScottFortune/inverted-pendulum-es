@@ -12,7 +12,8 @@ spec = [
     ('omega', float64),
     ('dot_omega', float64),
     ('damping', float64),
-    ('noise', float64)
+    ('noise', float64),
+    ('torque_penalty', float64)
     
 ]
 
@@ -26,7 +27,7 @@ def clip(x, min_val, max_val):
 
 @jitclass(spec)
 class CustomInvertedPendulum:
-    def __init__(self):
+    def __init__(self, torque_penalty=0.001):
         self.G = 9.81
         self.L = 1.0
         self.M = 1.0
@@ -34,6 +35,7 @@ class CustomInvertedPendulum:
         self.MAX_TORQUE = 2.0
         self.dt = 0.05
         self.damping = 0.99
+        self.torque_penalty = torque_penalty
 
         self.reset()
 
@@ -55,7 +57,7 @@ class CustomInvertedPendulum:
 
         omega_normalized = (self.omega + np.pi) % (2 * np.pi) - np.pi
         
-        reward = - (omega_normalized ** 2 + 0.1 * self.dot_omega ** 2 + 0.001 * action ** 2)
+        reward = - (omega_normalized ** 2 + 0.1 * self.dot_omega ** 2 + self.torque_penalty * action ** 2)
 
         done = False
         return np.array([self.omega, self.dot_omega], dtype=np.float64), reward, done
