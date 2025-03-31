@@ -1,7 +1,7 @@
 # Reinforcement Learning with Evolutionary Strategies for Inverted Pendulum Domain
 
 <p align="center">
-  <img src="figs/trained_pendulum.gif" alt="Trained Pendulum GIF" width="300"/>
+  <img src="figs/trained_pendulum_with_metrics.gif" alt="Trained Pendulum GIF" width="1000"/>
 </p>
 
 This project showcases a custom implementation of the Evolution Strategies (ES) algorithm applied to a continuous control problem inspired by the classic **Inverted Pendulum Swing-Up** task.
